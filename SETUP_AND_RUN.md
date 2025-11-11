@@ -34,20 +34,18 @@ Before starting, ensure you have:
 ### 1.2 Configure Backend
 
 ```bash
-cd backend
+cd "d:\public transport\backend"
 
-# Copy .env.example to .env
-cp .env.example .env
-
+# Copy .env file (if exists) or create new
 # Edit .env with your MongoDB connection string
-# MONGODB_URI=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/public-transport
-# JWT_SECRET=your_secure_random_string
+# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/public-transport
+# JWT_SECRET=your-secret-key-here
 ```
 
 ### 1.3 Install Dependencies & Start Backend
 
 ```bash
-cd backend
+cd "d:\public transport\backend"
 npm install
 npm start
 ```
@@ -59,7 +57,7 @@ npm start
 📡 WebSocket server ready
 ```
 
-**Backend URL**: `http://your_machine_ip:3000`
+**Backend URL**: `http://192.168.31.97:3000`
 
 ---
 
@@ -75,7 +73,7 @@ npm install
 ### 2.2 Start Driver App
 
 ```bash
-cd driver-app
+cd "d:\public transport\driver-app"
 npx expo start --tunnel --port 8082
 ```
 
@@ -84,8 +82,8 @@ npx expo start --tunnel --port 8082
 - Message: `Metro waiting on exp://...`
 
 **Driver App URLs:**
-- **Tunnel**: `exp://[your-tunnel-url].exp.direct` (shown in terminal)
-- **Local Network**: `exp://your_machine_ip:8082`
+- **Tunnel**: `exp://pxoj4gg-anonymous-8082.exp.direct`
+- **Local Network**: `exp://192.168.31.97:8082`
 
 ---
 
@@ -101,7 +99,7 @@ npm install
 ### 3.2 Start Passenger App
 
 ```bash
-cd passenger-app
+cd "d:\public transport\passenger-app"
 npx expo start --tunnel --port 8083
 ```
 
@@ -110,8 +108,8 @@ npx expo start --tunnel --port 8083
 - Message: `Metro waiting on exp://...`
 
 **Passenger App URLs:**
-- **Tunnel**: `exp://[your-tunnel-url].exp.direct` (shown in terminal)
-- **Local Network**: `exp://your_machine_ip:8083`
+- **Tunnel**: `exp://as6tmc4-anonymous-8083.exp.direct`
+- **Local Network**: `exp://192.168.31.97:8083`
 
 ---
 
@@ -120,23 +118,21 @@ npx expo start --tunnel --port 8083
 ### Option A: Same WiFi Network (Recommended)
 
 1. **Install Expo Go** on Android phone from Google Play Store
-2. **Connect to same WiFi** as your computer
+2. **Connect to same WiFi** as your computer (192.168.31.x network)
 3. **For Driver App**: 
-   - Open Expo Go → Scan QR code from terminal OR
-   - Enter the URL from terminal output
+   - Open Expo Go → Enter: `exp://192.168.31.97:8082`
 4. **For Passenger App**: 
-   - Open Expo Go → Scan QR code from terminal OR
-   - Enter the URL from terminal output
+   - Open Expo Go → Enter: `exp://192.168.31.97:8083`
 
 ### Option B: Anywhere Using Tunnel
 
 1. **Install Expo Go** on Android phone
 2. **For Driver App**: 
    - Open Expo Go → Scan QR code from terminal OR
-   - Enter tunnel URL from terminal
+   - Enter: `exp://pxoj4gg-anonymous-8082.exp.direct`
 3. **For Passenger App**: 
    - Open Expo Go → Scan QR code from terminal OR
-   - Enter tunnel URL from terminal
+   - Enter: `exp://as6tmc4-anonymous-8083.exp.direct`
 
 ---
 
@@ -144,15 +140,11 @@ npx expo start --tunnel --port 8083
 
 ### Driver Accounts
 
-For testing purposes, create test accounts with the following credentials:
-
 | Email | Password | Bus | Notes |
 |-------|----------|-----|-------|
-| driver@test.com | your_password | BUS-101 | Primary driver |
-| driver2@test.com | your_password | BUS-102 | Second driver |
-| driver3@test.com | your_password | BUS-103 | Third driver |
-
-> ⚠️ **IMPORTANT**: Change these passwords in production and do not commit credentials to version control.
+| driver@test.com | password123 | BUS-101 | Primary driver |
+| driver2@test.com | password123 | BUS-102 | Second driver |
+| driver3@test.com | password123 | BUS-103 | Third driver |
 
 ### Passenger Accounts
 
@@ -209,13 +201,13 @@ Use any email/password to register as a new passenger in the app.
 
 ```bash
 # Terminal 1: Start Backend
-cd backend && npm start
+cd "d:\public transport\backend" && npm start
 
 # Terminal 2: Start Driver App
-cd driver-app && npx expo start --tunnel --port 8082
+cd "d:\public transport\driver-app" && npx expo start --tunnel --port 8082
 
 # Terminal 3: Start Passenger App
-cd passenger-app && npx expo start --tunnel --port 8083
+cd "d:\public transport\passenger-app" && npx expo start --tunnel --port 8083
 ```
 
 ### Kill Specific Ports (If Needed)
@@ -227,8 +219,8 @@ npx kill-port 3000 8082 8083
 ### Clear Expo Cache
 
 ```bash
-cd driver-app && npx expo start --tunnel --port 8082 --clear
-cd passenger-app && npx expo start --tunnel --port 8083 --clear
+cd "d:\public transport\driver-app" && npx expo start --tunnel --port 8082 --clear
+cd "d:\public transport\passenger-app" && npx expo start --tunnel --port 8083 --clear
 ```
 
 ---
@@ -307,7 +299,7 @@ npx expo start --tunnel --port XXXX --clear
 ### Issue: "Cannot connect to backend"
 - Check backend is running on port 3000
 - Verify MongoDB connection string in .env
-- Ensure both apps and backend are on same network or using tunnel URLs
+- Ensure both apps and backend are on same network
 
 ### Issue: "Expo Go won't scan QR code"
 - Make sure WiFi is on both devices
@@ -333,7 +325,7 @@ For issues or questions:
 
 ## 📝 Notes
 
-- **Server IP**: Replace with your actual machine IP
+- **Server IP**: 192.168.31.97 (adjust for your network)
 - **Backend Port**: 3000
 - **Driver App Port**: 8082
 - **Passenger App Port**: 8083
